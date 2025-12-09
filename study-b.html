@@ -132,7 +132,7 @@ Object.keys(legsByFerry).forEach(fid => { legsByFerry[fid].sort((a,b)=>a.dep_ms-
 const allLegsSorted = SCHEDULES.filter(l => l.dep_ms != null).sort((a,b)=>a.dep_ms - b.dep_ms);
 // time bounds
 const allTimes = SCHEDULES.flatMap(l => [l.dep_ms, l.arr_ms]).filter(Number.isFinite);
-const globalStart = allTimes.length ? Math.min(...allTimes) : Date.now();
+const globalStart = Math.min(...allTimes) +  14_400_000;
 const globalEnd   = globalStart + 604_800_000; // +7 days data window
 // simulation time
 let simStart   = globalStart;   // anchor: beginning of schedule
